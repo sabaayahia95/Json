@@ -1,0 +1,367 @@
+{
+  "DataType": {
+    "id": 1,
+    "group_name": "DataType",
+    "group_regex": [
+      {
+        "name": "IntegerVariables",
+        "item_name": [
+          "int",
+          "long",
+          "short",
+          "byte"
+        ],
+        "regex": [
+          "int",
+          "long",
+          "short",
+          "byte"
+        ]
+      },
+      {
+        "name": "FloatVariables",
+        "item_name": [
+          "float",
+          "double"
+        ],
+        "regex": [
+          "float",
+          "double"
+        ]
+      },
+      {
+        "name": "StringVariables",
+        "item_name": [
+          "string",
+          "char"
+        ],
+        "regex": [
+          "string",
+          "char"
+        ]
+      },
+      {
+        "name": "logicVariables",
+        "item_name": [
+          "boolean"
+        ],
+        "regex": [
+          "boolean"
+        ]
+      }
+    ]
+  },
+  "AssignDataType": {
+    "id": 2,
+    "group_name": "AssignDataType",
+    "group_regex": [
+      {
+        "name": "AIntegerVariables",
+        "item_name": [
+          "IntegerVariables"
+        ],
+        "regex": [
+          "(\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\s*=\\d+))\\s*;$",
+          "((\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\s*=\\d+))",
+          "(\\s*(^[A-Z_az]{1,32})(\\s*)(\\s*=\\d+))\\s*;$ ",
+          "(\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\*s=[A-Z_az]{1,32})(\\s*)(\\s*=\\d+))\\s*;$"
+        ]
+      },
+      {
+        "name": "AFloatVariables",
+        "item_name": [
+          "FloatVariables"
+        ],
+        "regex": [
+          [
+            "((^[A-Z_a-z]{1,32})((\\s*=\\s*\\d+\\.\\d+f))\\s*;$",
+            "(((^[A-Z_a-z]{1,32})=(^[A-Z_az]{1,32})((\\s*=\\s*\\d+\\.\\d+f)))\\s*;$"
+          ],
+          [
+            "((^[A-Z_a-z]{1,32})((\\s*=\\s*\\d+\\.\\d+d))\\s*;$",
+            "(((^[A-Z_a-z]{1,32})=(^[A-Z_az]{1,32})((\\s*=\\s*\\d+\\.\\d+d)))\\s*;$"
+          ]
+        ]
+      },
+      {
+        "name": "AStringVariables",
+        "item_name": [
+          "StringVariables"
+        ],
+        "regex": [
+          [
+            "(((^[A-Z_a-z]{1,32}))(\\s*)(\\s*=\\s*”.+”*)\\s*;$",
+            "((((^[A-Z_a-z]{1,32}))(\\s*)(\\s*=\\s*”.+”*)\\+(((^[A-Z_az]{1,32}))(\\s*)(\\s*=\\s*”.+”*))\\s*;$"
+          ],
+          [
+            "(\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\s*=\\d+))\\s*;$",
+            "(((^[A-Z_a-z]{1,32}))(\\s*)(\\s*=\\s*’.+’*)\\s*;$",
+            "(((^[A-Z_a-z]{1,32}))(\\s*)(\\s*=’\\s+’*)\\s*;$",
+            "((\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\s*=\\d+)),(\\s*(^[A-Z_az]{1,32})(\\s*)(\\s*=\\d+))\\s*;$"
+          ]
+        ]
+      },
+      {
+        "name": "AlogicVariables",
+        "item_name": [
+          "logicVariables"
+        ],
+        "regex": [
+          "(\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\s*=\\d+))\\s*;$",
+          "((\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\s*=\\d+)), (\\s*(^[A-Z_az]{1,32})(\\s*)(\\s*=\\d+))\\s*;$ ",
+          "(\\s*(^[A-Z_a-z]{1,32})(\\s*)(\\*s=[A-Z_az]{1,32})(\\s*)(\\s*=\\d+))\\s*;$"
+        ]
+      }
+    ]
+  },
+  "Functions": {
+    "id": 3,
+    "group_name": "Functions",
+    "group_regex": [
+      {
+        "name": "DefFunctions",
+        "item_name": [
+          "function",
+          "Void_Function",
+          "return_Function"
+        ],
+        "regex": [
+          "(([A-Z_a-z]{1,32}[0- 9])(\\(\\))\\s(\\{(.*|\\s*)\\ }))$",
+          "(^void\\s*([A-Z_a-z]{1,32}[0- 9])(\\(((.*|\\,)+)\\))\\s(\\{(.*|\\s* )\\}))$ ",
+          "(([A-Z_a-z]{1,32}[0- 9])(\\(((.*|\\,)+)\\))\\s(\\{\\s*return(.*|\\s*)\\;\\}))$"
+        ]
+      }
+    ]
+  },
+  "loop": {
+    "id": 4,
+    "group_name": "loop",
+    "group_regex": [
+      {
+        "name": "Loop_Syntax",
+        "item_name": [
+          "for",
+          "while",
+          "do while"
+        ],
+        "regex": [
+          "(^for\\(\\s*int [A-Z_az]{1,32})(\\s*)(\\s*=\\d+)\\s*;\\s*[AZ_a-z]\\<=\\S*\\d+;\\s*[A-Z_az]\\++\\s*\\)\\s*\\{(\\s*.*\\s*)\\}",
+          "(^\\s*while\\(\\s*[A-Z_az]\\<=\\d+\\s*\\)\\s*\\{(\\s*.*\\s*);\\s*[AZ_a-z]\\++;\\s*\\})",
+          "(^\\s*do\\s*\\{(\\s*.*\\s*);\\s*[AZ_az]\\++;\\s*\\}\\s*while\\(\\s*[AZ_a-z]\\<=\\d+\\s*\\);\\s*\\})"
+        ]
+      }
+    ]
+  },
+  "Condition": {
+    "id": 5,
+    "group_name": "Condition",
+    "group_regex": [
+      {
+        "name": "If_Condition",
+        "item_name": [
+          "if",
+          "if_else"
+        ],
+        "regex": [
+          "(^\\s*if\\(\\s*[A-Z_az]\\s*(>|<=|<|>=|=)\\s*\\d+\\s*\\)\\s*\\{(\\s*.*\\s*);\\s*\\})",
+          "(^\\s*if\\(\\s*[A-Z_az]\\s*(>|<=|<|>=|=|==)\\s*\\d+\\s*\\)\\s*\\{(\\s*.*\\s*);\\s*\\}\\s*else\\{(\\s*.*\\s*);\\s*\\})"
+        ]
+      }
+    ]
+  },
+  "Arrays": {
+    "id": 6,
+    "group_name": "Arrays",
+    "group_regex": [
+      {
+        "name": "Def_Array",
+        "item_name": [
+          "De_Arrays",
+          "A_Arrays"
+        ],
+        "regex": [
+          [
+            "(\\s*(^\\[\\](\\s)[A-Z_a-z]{1,32}))\\s*;$",
+            "(\\s*(^\\[\\][A-Z_a-z]{1,32}))\\s*;$",
+            "(\\s*(^[A-Z_a-z]{1,32}\\[\\]))\\s*;$"
+          ],
+          "(\\s*=\\{\\d+(,\\d+)+\\})\\s*;$"
+        ]
+      }
+    ]
+  },
+  "Operators": {
+    "id": 7,
+    "group_name": "Operators",
+    "group_regex": [
+      {
+        "name": "Arithmetic_Operators",
+        "item_name": [
+          "Arth_Operators",
+          "Assignment_Operators",
+          "Increment",
+          "Decrement"
+        ],
+        "regex": [
+          "(\\s*(^[A-Z_az]{1,32})\\s*=\\s*\\d+\\s*(\\+|\\-|\\*|\/|\\%)\\s*\\d+)\\s*;$",
+          "(\\s*(^[A-Z_a-z]{1,32})\\s*(\\+|\\-|\\*|\/)=\\s*\\d+\\s*;$)",
+          [
+            "(\\s*(^[A-Z_az]|\\d+)\\s*=(\\+\\+|)\\s*([A-Z_a-z]|\\d+)\\s*;$)",
+            "(\\s*(^[A-Z_az]|\\d+)\\s*=\\s*([A-Z_az]|\\d+)\\s*(\\+\\+|);$)"
+          ],
+          [
+            "(\\s*(^[A-Z_a-z]|\\d+)\\s*=(\\-\\-|)\\s*([A-Z_az]|\\d+)\\s*;$)",
+            "(\\s*(^[A-Z_a-z]|\\d+)\\s*=(\\-\\- |)\\s*([A-Z_a-z]|\\d+)\\s*;$)"
+          ]
+        ]
+      },
+      {
+        "name": "Comparison_Operators",
+        "item_name": [
+          "Equal to",
+          "Not equal to",
+          "Less than",
+          "Greater than",
+          "Greater thanor Equal to",
+          "Less thanor Equal to"
+        ],
+        "regex": [
+          "(\\s*(^[A-Z_az]{1,32})\\s*(\\=\\=)\\s*\\d+\\s*;$)",
+          [
+            "(\\s*(^[A-Z_az]{1,32})\\s*(\\=\\!)\\s*\\d+\\s*;$)",
+            "(\\s*(^[A-Z_az]{1,32})\\s*(\\!)\\s*\\d+\\s*;$)",
+            "(\\s*(^[A-Z_az]{1,32})\\s*(\\!)\\((\\s*([AZ_a-z]{1,32})\\s*(\\+|\\-|\\*|\/)=\\s*\\d+\\))\\s*;$)"
+          ],
+          "(\\s*(^[A-Z_az]{1,32})\\s*(\\<)\\s*([A-Z_az]|\\d+)\\s*;$)",
+          "(\\s*(^[A-Z_az]{1,32})\\s*(\\>)\\s*([A-Z_az]|\\d+)\\s*;$)",
+          "(\\s*(^[A-Z_az]{1,32})\\s*(\\>\\=)\\s*([AZ_a-z]|\\d+)\\s*;$)",
+          "(\\s*(^[A-Z_a- z]|\\d+)\\s*;$)z]{1,32})\\s*(\\=\\<)\\s*([AZ_a-z]|\\d+)\\s*;$)"
+        ]
+      },
+      {
+        "name": "Logical_Operators",
+        "item_name": [
+          "AND",
+          "OR"
+        ],
+        "regex": [
+          "(\\s*(^[A-Z_a-z]|\\d+)\\s*(\\&\\&)\\s*([A-Z_az]|\\d+)\\s*;$)",
+          "(\\s*(^[A-Z_a-z]|\\d+)\\s*(\\|\\|)\\s*([A-Z_az]|\\d+)\\s*;$)"
+        ]
+      }
+    ]
+  },
+  "Key_Words": {
+    "id": 8,
+    "group_name": "Key_Words",
+    "group_regex": [
+      {
+        "name": "Def_Array",
+        "item_name": [
+          "abstract",
+          "continue",
+          "for",
+          "new",
+          "switch",
+          "assert***",
+          "default",
+          "goto*",
+          "package",
+          "synchronized",
+          "boolean",
+          "do",
+          "if",
+          "private",
+          "this",
+          "break",
+          "double",
+          "implements",
+          "protected",
+          "throw",
+          "byte",
+          "else",
+          "import",
+          "public",
+          "throws",
+          "case",
+          "enum****",
+          "instanceof",
+          "return",
+          "transient",
+          "catch",
+          "extends",
+          "int",
+          "short",
+          "try",
+          "char",
+          "final",
+          "interface",
+          "static",
+          "void",
+          "class",
+          "finally",
+          "long",
+          "strictfp**",
+          "volatile",
+          "const*",
+          "float",
+          "native",
+          "super",
+          "while"
+        ],
+        "regex": [
+          "abstract",
+          "continue",
+          "for",
+          "new",
+          "switch",
+          "assert***",
+          "default",
+          "goto*",
+          "package",
+          "synchronized",
+          "boolean",
+          "do",
+          "if",
+          "private",
+          "this",
+          "break",
+          "double",
+          "implements",
+          "protected",
+          "throw",
+          "byte",
+          "else",
+          "import",
+          "public",
+          "throws",
+          "case",
+          "enum****",
+          "instanceof",
+          "return",
+          "transient",
+          "catch",
+          "extends",
+          "int",
+          "short",
+          "try",
+          "char",
+          "final",
+          "interface",
+          "static",
+          "void",
+          "class",
+          "finally",
+          "long",
+          "strictfp**",
+          "volatile",
+          "const*",
+          "float",
+          "native",
+          "super",
+          "while"
+        ]
+      }
+    ]
+  }
+}
